@@ -1,0 +1,43 @@
+<head>
+  <title>simple</title>
+  <style type="text/css">
+    .box{
+      border: 10px solid black;
+      max-height: 400px;
+      padding: 10px;
+      overflow: scroll;
+      width:30%;
+    }
+    .small {
+      font-size: 0.7em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="allUsers"></div>
+  <div id="conversation" ></div>
+</body>
+
+<template name="allUsers">
+  <div class="box">
+    {{#each users}}
+      <a href="#" class="username" data-user-id="{{_id}}">{{emails.[0].address}}</a><br>
+    {{/each}}
+  </div>
+</template>
+<template name="conversation">
+  <div class="box">
+  {{#if showConversation}}
+    <h2>Conversation with {{username currentConversation}}</h2>
+    {{>quickForm id="sendMsg" collection="Messages"}}
+    {{#each messages}}
+      <span class="small">{{sentAt}}<br></span>
+      <b>{{username from}}:</b> {{msg}}<br><br>
+    {{/each}}
+  {{else}}
+    <h3>{{{noConversationMsg}}}</h3>
+  {{/if}}
+  </div>
+</template>
