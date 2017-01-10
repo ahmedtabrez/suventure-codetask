@@ -1,1 +1,16 @@
 /* CSS declarations go here */
+
+    .box{
+      border: 10px solid black;
+      max-height: 400px;
+      padding: 10px;
+      overflow: scroll;
+      width:30%;
+    }
+    .small {
+      font-size: 0.7em;
+    }
+    .photo {
+    	width: 105px;
+    	height: auto;
+    }

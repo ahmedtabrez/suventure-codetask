@@ -1,16 +1,6 @@
 <head>
   <title>simple</title>
   <style type="text/css">
-    .box{
-      border: 10px solid black;
-      max-height: 400px;
-      padding: 10px;
-      overflow: scroll;
-      width:30%;
-    }
-    .small {
-      font-size: 0.7em;
-    }
   </style>
 </head>
 
@@ -30,7 +20,11 @@
 <template name="conversation">
   <div class="box">
   {{#if showConversation}}
-    <h2>Conversation with {{username currentConversation}}</h2>
+    <h1>{{username currentConversation}}</h1>
+    <div >
+      <img class="photo" src="https://lh4.googleusercontent.com/-fT2wik9zjH0/AAAAAAAAAAI/AAAAAAAABVM/umJnLqoQbWY/photo.jpg" alt="">
+    </div>
+    <h3>Conversation with {{username currentConversation}}</h3>
     {{>quickForm id="sendMsg" collection="Messages"}}
     {{#each messages}}
       <span class="small">{{sentAt}}<br></span>

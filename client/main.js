@@ -41,6 +41,8 @@ Template.conversation.helpers({
 			return "You are not signed in <br> Please sign in to send/view messages.";
 		else if(!Session.get('currentConversation'))
 			return "Select a user above to send message"
+		else
+			return false
 	}
 })
 
