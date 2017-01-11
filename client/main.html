@@ -5,33 +5,82 @@
 </head>
 
 <body>
-  <div id="app"></div>
-  <div id="allUsers"></div>
-  <div id="conversation" ></div>
+  <div class="container">
+    <div class="row">
+      <div class="col m12 l4 s4">
+        <div class="card blue-grey lighten-4">
+          <div  class="card-content">
+            <div class="card-title">Signin or Signup:</div>
+            <div id="loginButtons"></div>
+          </div>
+        </div>
+        <div id="allUsers"></div>
+      </div>
+      <div class="col m12 l8 s4">
+        <div id="conversation" ></div>
+      </div>
+    </div>
+  </div>
 </body>
 
 <template name="allUsers">
-  <div class="box">
-    {{#each users}}
-      <a href="#" class="username" data-user-id="{{_id}}">{{emails.[0].address}}</a><br>
-    {{/each}}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">Registered Users:</div>
+      {{#each users}}
+        <a href="#" class="username" data-user-id="{{_id}}">{{emails.[0].address}}</a><br>
+      {{/each}}
+    </div>
   </div>
 </template>
 <template name="conversation">
-  <div class="box">
   {{#if showConversation}}
-    <h1>{{username currentConversation}}</h1>
-    <div >
-      <img class="photo" src="/img/profile.jpg" alt="">
+    <div class="card blue-grey lighten-3">
+      <div class="card-content">
+        <div class="row">
+          <div class="col m12 s6 l6">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-image">
+                  <img src="/img/profile.jpg" alt="">
+                  <div class="card-title">{{username currentConversation}}</div>
+                </div>
+                <div class="card-title">Profile</div>
+                <p>
+                  User ID: {{currentConversation}} <br>
+                  Email ID: {{username currentConversation}} <br>
+                </p>
+              </div>
+              </div>
+          </div>
+          <div class="col s6 l6">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-title">
+                  Conversation with {{username currentConversation}}
+                </div>
+                {{>chatbox messages=messages}}
+                {{>quickForm id="sendMsg" collection="Messages"}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h3>Conversation with {{username currentConversation}}</h3>
-    {{>quickForm id="sendMsg" collection="Messages"}}
+  {{else}}
+    <div class="card">
+      <div class="card-content">
+        {{{noConversationMsg}}}
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="chatbox">
+  <div id="chatbox" class="card-panel">
     {{#each messages}}
       <span class="small">{{sentAt}}<br></span>
       <b>{{username from}}:</b> {{msg}}<br><br>
     {{/each}}
-  {{else}}
-    <h3>{{{noConversationMsg}}}</h3>
-  {{/if}}
   </div>
 </template>
