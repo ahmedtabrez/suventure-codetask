@@ -15,4 +15,4 @@ Meteor.publish('messages', function() {
 			{to: this.userId}
 		]
 	});
-})
+});
